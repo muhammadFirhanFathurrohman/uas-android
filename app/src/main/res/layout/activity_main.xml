@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btn_create"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:onClick="create"
+        android:textStyle="bold"
+        android:text="Create"/>
+
+    <Button
+        android:id="@+id/btn_petunjuk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:text="Petunjuk"
+        android:onClick="petunjuk"
+        android:layout_below="@+id/btn_create"/>
+
+    <Button
+        android:id="@+id/btn_keluar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:text="keluar"
+        android:onClick="keluar"
+        android:layout_below="@+id/btn_petunjuk"/>
+
+    <ListView
+        android:id="@+id/listBiodata"
+        android:layout_width="wrap_content"
+        android:layout_height="440dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/btn_keluar"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="20dp"
+        android:src="@drawable/hello"
+        app:fabCustomSize="60dp"/>
+
+</RelativeLayout>
