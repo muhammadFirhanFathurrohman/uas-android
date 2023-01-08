@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -19,9 +20,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Create extends AppCompatActivity {
 
     SQLHelper dbhelper;
-    EditText ed_npm, ed_namalengkap, ed_tempatlahir, ed_tanggallahir, ed_jurusan, ed_alamat;
-    Spinner jeniskelamin;
-    CircleImageView imageView;
+    EditText ednpm, ednamalengkap, edtempatlahir, edtanggallahir, edjurusan, edalamat, edTextDate;
+    Button simpan;
+    Spinner spjeniskelamin;
+    CircleImageView climageView;
     protected Cursor cursor;
 
     @Override
@@ -29,29 +31,76 @@ public class Create extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
 
-        ed_npm = (EditText) findViewById(R.id.txNomor_Add);
-        ed_namalengkap = (EditText) findViewById(R.id.txNama_Add);
-        ed_tempatlahir = (EditText) findViewById(R.id.txTempatLahir_Add);
-        ed_tanggallahir = (EditText) findViewById(R.id.txTglLahir_Add);
-        ed_jurusan = (EditText) findViewById(R.id.txJurusan_Add);
-        ed_alamat = (EditText) findViewById(R.id.txAlamat_Add);
+        ednpm = (EditText) findViewById(R.id.edNpm);
+        ednamalengkap = (EditText) findViewById(R.id.edNama);
+        edtempatlahir = (EditText) findViewById(R.id.edTempat);
+        edtanggallahir = (EditText) findViewById(R.id.edTanggal);
+        edTextDate = (EditText) findViewById(R.id.editTextDate);
+        edjurusan = (EditText) findViewById(R.id.edJurusan);
+        edalamat = (EditText) findViewById(R.id.edAlamat);
+        spjeniskelamin = (Spinner) findViewById(R.id.edJeniskelamin);
+        climageView = (CircleImageView) findViewById(R.id.image_profile);
+        simpan = (Button) findViewById(R.id.but_in_simpan);
+
 
         dbhelper = new SQLHelper(this);
+
+        simpan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String gambar = "";
+                String npm = ednpm.getText().toString();
+                String nama = ednamalengkap.getText().toString();
+                String tempatLahir = edtempatlahir.getText().toString();
+                String tglLahir = edTextDate.getText().toString();
+                String alamat = edjurusan.getText().toString();
+                String jurusan = edjurusan.getText().toString();
+                String jenisKelamin = spjeniskelamin.getSelectedItem().toString();
+
+                addData(npm, nama, tempatLahir, tglLahir, jenisKelamin, jurusan, alamat, gambar);
+            }
+        });
     }
 
-    public void simpan(View view){
-       /* SQLiteDatabase db = dbhelper.getWritableDatabase();
-        String sql = "INSERT INTO tabel_biodata(row_npm,) VALUES()";
+    private void addData(String npm, String nama, String tempat, String tanggal, String jeniskelamin, String jurusan, String alamat, String image) {
+        SQLiteDatabase db = dbhelper.getWritableDatabase();
+        try {
+            db.execSQL("INSERT INTO " + SQLHelper.TABLE + "(" +
+                    SQLHelper.row_foto + "," +
+                    SQLHelper.row_npm + "," +
+                    SQLHelper.row_nama + "," +
+                    SQLHelper.row_tempatLahir + "," +
+                    SQLHelper.row_tglLahir + "," +
+                    SQLHelper.row_jk + "," +
+                    SQLHelper.row_jurusan + "," +
+                    SQLHelper.row_alamat +
+                    ")" +
+                    " VALUES('" +
+                    image + "','" +
+                    npm + "','" +
+                    nama + "','" +
+                    tempat + "','" +
+                    tanggal + "','" +
+                    jeniskelamin + "','" +
+                    jurusan + "','" +
+                    alamat + "');"
 
-        db.execSQL(sql);
-        Toast.makeText(Create.this, "data tersimpan", Toast.LENGTH_SHORT).show();
-        MainActivity
-                finiis*/
+            );
+            ednpm.setText("");
+            ednamalengkap.setText("");
+            edtempatlahir.setText("");
+            edtanggallahir.setText("");
+            edjurusan.setText("");
+            edalamat.setText("");
+
+        } catch (Exception e) {
+            ednpm.setText(e.toString());
+        }
     }
 
-    public void kembali (View view) {
-        Intent i = new Intent(Create.this, MainActivity.class);
-        startActivity(i);
+    public void kembali(View view) {
+//        Intent i = new Intent(Create.this, MainActivity.class);
+//        startActivity(i);
         finish();
     }
 }
