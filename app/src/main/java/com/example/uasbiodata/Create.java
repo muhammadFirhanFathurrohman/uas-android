@@ -13,6 +13,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -20,6 +21,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Create extends AppCompatActivity {
 
     SQLHelper dbhelper;
+    TextView tvTanggal;
     EditText ednpm, ednamalengkap, edtempatlahir, edtanggallahir, edjurusan, edalamat, edTextDate;
     Button simpan;
     Spinner spjeniskelamin;
@@ -34,14 +36,13 @@ public class Create extends AppCompatActivity {
         ednpm = (EditText) findViewById(R.id.edNpm);
         ednamalengkap = (EditText) findViewById(R.id.edNama);
         edtempatlahir = (EditText) findViewById(R.id.edTempat);
-        edtanggallahir = (EditText) findViewById(R.id.edTanggal);
+//        tvTanggal = (TextView) findViewById(R.id.tvTanggal);
         edTextDate = (EditText) findViewById(R.id.editTextDate);
         edjurusan = (EditText) findViewById(R.id.edJurusan);
         edalamat = (EditText) findViewById(R.id.edAlamat);
         spjeniskelamin = (Spinner) findViewById(R.id.edJeniskelamin);
         climageView = (CircleImageView) findViewById(R.id.image_profile);
         simpan = (Button) findViewById(R.id.but_in_simpan);
-
 
         dbhelper = new SQLHelper(this);
 
