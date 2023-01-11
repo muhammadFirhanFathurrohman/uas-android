@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".Create">
+    tools:context=".activity.Create">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -16,11 +16,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-
+            android:padding="5dp"
             android:orientation="vertical">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/image_profile"
+                android:id="@+id/cli_profil"
                 android:layout_width="170dp"
                 android:layout_height="170dp"
                 android:layout_gravity="center"
@@ -31,7 +31,7 @@
                 app:civ_border_width="2dp" />
 
             <EditText
-                android:id="@+id/txID_Add"
+                android:id="@+id/et_gambar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone" />
@@ -43,7 +43,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/edNpm"
+                android:id="@+id/et_npm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number" />
@@ -56,7 +56,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/edNama"
+                android:id="@+id/et_nama"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapSentences" />
@@ -69,7 +69,7 @@
                 android:textStyle="bold" />
 
             <Spinner
-                android:id="@+id/edJeniskelamin"
+                android:id="@+id/sp_jenis"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:entries="@array/jenis_kelamin" />
@@ -82,25 +82,22 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/edTempat"
+                android:id="@+id/et_tempat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapSentences" />
 
             <TextView
-                android:id="@+id/tvTanggal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Tanggal Lahir"
                 android:textStyle="bold" />
 
-
             <EditText
-                android:id="@+id/editTextDate"
+                android:id="@+id/et_tanggal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
                 android:inputType="date" />
 
             <TextView
@@ -111,10 +108,10 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/edJurusan"
+                android:id="@+id/et_jurusan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapSentences" />
+                android:inputType="textCapSentences"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -124,7 +121,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/edAlamat"
+                android:id="@+id/et_alamat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapSentences" />
@@ -137,7 +134,7 @@
                 android:padding="8dp">
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/but_in_simpan"
+                    android:id="@+id/btn_simpan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
@@ -146,7 +143,7 @@
                     android:textColor="#ffffff" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/kembali"
+                    android:id="@+id/btn_kembali"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_button"

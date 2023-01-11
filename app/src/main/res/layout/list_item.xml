@@ -1,43 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="8dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/li_cli_profil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher_background" />
 
-        <ImageView
-            android:id="@+id/listgambar"
-            android:layout_width="129dp"
-            android:layout_height="119dp"
-            android:src="@drawable/icon_image" />
+    <TextView
+        android:id="@+id/lv_nama"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="nama lengkap"
+        android:layout_toRightOf="@+id/li_cli_profil"
+        android:padding="8dp"
+        android:textSize="20dp"/>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center">
+    <TextView
+        android:id="@+id/lv_npm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="npm"
+        android:layout_toRightOf="@+id/li_cli_profil"
+        android:layout_below="@+id/lv_nama"
+        android:padding="8dp"
+        android:textSize="20dp"/>
 
-            <TextView
-                android:id="@+id/listnama"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="nama"
-                android:textSize="30dp"/>
-
-            <TextView
-                android:id="@+id/listnpm"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="npm"
-                android:textSize="30dp"/>
-
-        </LinearLayout>
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>
