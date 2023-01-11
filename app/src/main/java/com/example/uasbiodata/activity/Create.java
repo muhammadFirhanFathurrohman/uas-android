@@ -25,9 +25,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Create extends AppCompatActivity {
 
     SQLHelper dbhelper;
-    EditText  etnpm, etnama, ettempat, ettanggal, etjurusan, etalamat;
+    EditText  etnpm, etnama, ettempat, ettanggal, etalamat;
     Button btnsimpan, btnkembali;
-    Spinner spjenis;
+    Spinner spjenis, spjurusan;
     CircleImageView cliprofil;
     DatePickerDialog datePickerDialog;
     SimpleDateFormat dateFormat;
@@ -49,10 +49,10 @@ public class Create extends AppCompatActivity {
         etnama = (EditText) findViewById(R.id.et_nama);
         ettanggal = (EditText) findViewById(R.id.et_tanggal);
         ettempat = (EditText) findViewById(R.id.et_tempat);
-        etjurusan = (EditText) findViewById(R.id.et_jurusan);
         etalamat = (EditText) findViewById(R.id.et_alamat);
 
         spjenis = (Spinner) findViewById(R.id.sp_jenis);
+        spjurusan = (Spinner) findViewById(R.id.sp_jurusan);
         cliprofil = (CircleImageView) findViewById(R.id.cli_profil);
         btnsimpan = (Button) findViewById(R.id.btn_simpan);
         btnkembali = (Button) findViewById(R.id.btn_kembali);
@@ -75,7 +75,7 @@ public class Create extends AppCompatActivity {
                 String nama = etnama.getText().toString();
                 String tempat = ettempat.getText().toString();
                 String tanggal = ettanggal.getText().toString();
-                String jurusan = etjurusan.getText().toString();
+                String jurusan = spjurusan.getSelectedItem().toString();
                 String alamat = etalamat.getText().toString();
                 String jenis = spjenis.getSelectedItem().toString();
 
@@ -123,7 +123,6 @@ public class Create extends AppCompatActivity {
             etnama.setText("");
             ettempat.setText("");
             ettanggal.setText("");
-            etjurusan.setText("");
             etalamat.setText("");
         } catch (Exception e) {
             e.printStackTrace();

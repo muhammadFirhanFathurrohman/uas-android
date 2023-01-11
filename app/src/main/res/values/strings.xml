@@ -9,4 +9,13 @@
             Perempuan
         </item>
     </string-array>
+
+    <string-array name="jurusan">
+        <item>
+            Teknik Informatika
+        </item>
+        <item>
+            Komputerisasi Akuntansi
+        </item>
+    </string-array>
 </resources>
