@@ -41,6 +41,14 @@ public class MainActivity extends AppCompatActivity {
         dbhelper = new SQLHelper(this);
         getData();
 
+//        pengecekan jika tidak ada data di listview
+        if (cursor.getCount() == 0){
+            btnfab.setVisibility(View.GONE);
+        }else{
+//            jika tidak ada , hapus
+            btncreate.setVisibility(View.GONE);
+        }
+
     }
 //    menu
     @Override

@@ -39,117 +39,156 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="NIM/NPM"
-                android:textStyle="bold" />
+                android:layout_marginTop="10dp"
+                android:text="NPM/NIM"
+                android:textStyle="bold"
+                android:textSize="18dp"/>
 
             <EditText
                 android:id="@+id/et_npm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number" />
+                android:inputType="number"
+                android:hint="masukan NIM/NPM"
+                android:layout_marginTop="10dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Nama Lengkap"
-                android:textStyle="bold" />
+                android:layout_marginTop="10dp"
+                android:text="Nama lengkap"
+                android:textStyle="bold"
+                android:textSize="18dp"/>
 
             <EditText
                 android:id="@+id/et_nama"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapSentences" />
+                android:inputType="text"
+                android:hint="masukan nama lengkap"
+                android:layout_marginTop="10dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Jenis Kelamin"
-                android:textStyle="bold" />
-
-            <Spinner
-                android:id="@+id/sp_jenis"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:entries="@array/jenis_kelamin" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:text="Tempat Lahir"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="18dp"/>
 
             <EditText
                 android:id="@+id/et_tempat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapSentences" />
+                android:inputType="text"
+                android:hint="masukan tempat lahir"
+                android:layout_marginTop="10dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Tanggal Lahir"
-                android:textStyle="bold" />
+                android:layout_marginTop="10dp"
+                android:text="Tanggal"
+                android:textStyle="bold"
+                android:textSize="18dp"/>
 
             <EditText
                 android:id="@+id/et_tanggal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:focusable="false"/>
+                android:focusable="false"
+                android:hint="dd/MM/yyyy"
+                android:layout_marginTop="10dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Jurusan"
-                android:textStyle="bold" />
+                android:layout_marginTop="10dp"
+                android:text="Jenis Kelamin"
+                android:textStyle="bold"
+                android:textSize="18dp"/>
 
-            <Spinner
-                android:id="@+id/sp_jurusan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:entries="@array/jurusan"/>
+                <RadioGroup
+                    android:id="@+id/rg_jenis"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rb_laki"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Laki-laki"
+                        android:textSize="18dp"
+                        android:checked="true"/>
+                    <RadioButton
+                        android:id="@+id/rb_perempuan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18dp"
+                        android:text="Perempuan"/>
+                </RadioGroup>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Alamat"
-                android:textStyle="bold" />
+                android:layout_marginTop="10dp"
+                android:text="Alamat lengkap"
+                android:textStyle="bold"
+                android:textSize="18dp"/>
 
             <EditText
                 android:id="@+id/et_alamat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapSentences" />
+                android:inputType="text"
+                android:hint="masukan alamat"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Jurusan"
+                android:textStyle="bold"
+                android:textSize="18dp"/>
+
+            <Spinner
+                android:id="@+id/sp_jurusan"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:entries="@array/jurusan"
+                android:layout_marginTop="5dp"/>
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:padding="8dp">
+                android:padding="8dp"
+                android:layout_marginTop="20dp">
+
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_simpan"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:background="@drawable/bg_button"
+                    android:padding="10dp"
+                    android:background="@color/purple_700"
                     android:text="SIMPAN"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
                     android:textColor="#ffffff" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_kembali"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_button"
-                    android:onClick="kembali"
-                    android:text="KEMBALI"
-                    android:textColor="#ffffff" />
+<!--                <androidx.appcompat.widget.AppCompatButton-->
+<!--                    android:id="@+id/btn_kembali"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@drawable/bg_button"-->
+<!--                    android:onClick="kembali"-->
+<!--                    android:text="KEMBALI"-->
+<!--                    android:textColor="#ffffff" />-->
             </androidx.appcompat.widget.LinearLayoutCompat>
 
 

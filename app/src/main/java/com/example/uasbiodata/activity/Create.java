@@ -12,7 +12,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.uasbiodata.R;
 import com.example.uasbiodata.database.SQLHelper;
@@ -26,8 +29,10 @@ public class Create extends AppCompatActivity {
 
     SQLHelper dbhelper;
     EditText  etnpm, etnama, ettempat, ettanggal, etalamat;
+    RadioGroup rgJeniskelamin;
+    RadioButton rbIdTerpilih;
     Button btnsimpan, btnkembali;
-    Spinner spjenis, spjurusan;
+    Spinner spjurusan;
     CircleImageView cliprofil;
     DatePickerDialog datePickerDialog;
     SimpleDateFormat dateFormat;
@@ -51,7 +56,8 @@ public class Create extends AppCompatActivity {
         ettempat = (EditText) findViewById(R.id.et_tempat);
         etalamat = (EditText) findViewById(R.id.et_alamat);
 
-        spjenis = (Spinner) findViewById(R.id.sp_jenis);
+         rgJeniskelamin = (RadioGroup) findViewById(R.id.rg_jenis);
+
         spjurusan = (Spinner) findViewById(R.id.sp_jurusan);
         cliprofil = (CircleImageView) findViewById(R.id.cli_profil);
         btnsimpan = (Button) findViewById(R.id.btn_simpan);
@@ -70,32 +76,42 @@ public class Create extends AppCompatActivity {
         btnsimpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String gambar = "";
+                String foto = "";
                 String npm = etnpm.getText().toString();
                 String nama = etnama.getText().toString();
                 String tempat = ettempat.getText().toString();
                 String tanggal = ettanggal.getText().toString();
                 String jurusan = spjurusan.getSelectedItem().toString();
                 String alamat = etalamat.getText().toString();
-                String jenis = spjenis.getSelectedItem().toString();
+//                mengambil id yang terpilih
+                int idTerpilih = rgJeniskelamin.getCheckedRadioButtonId();
+                rbIdTerpilih = (RadioButton) findViewById(idTerpilih);
 
-                addData(npm, nama, tempat, tanggal, jurusan, alamat, jenis, gambar);
-                Intent intent = new Intent(Create.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
+                String jenis = rbIdTerpilih.getText().toString();
 
-        btnkembali.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Create.this, MainActivity.class);
-                startActivity(intent);
+                if(etnpm.getText().length()==0){
+                    Toast.makeText(Create.this, "NPM/NIM harus diisi", Toast.LENGTH_SHORT).show();
+                }else if(etnama.getText().length()==0){
+                    Toast.makeText(Create.this, "Nama harus diisi", Toast.LENGTH_SHORT).show();
+                }else if(ettempat.getText().length()==0){
+                    Toast.makeText(Create.this, "Tempat harus diisi", Toast.LENGTH_SHORT).show();
+                }else if(ettanggal.getText().length()==0){
+                    Toast.makeText(Create.this, "Tanggal harus diisi", Toast.LENGTH_SHORT).show();
+                }else if(etalamat.getText().length()==0){
+                    Toast.makeText(Create.this, "Alamat harus diisi", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    addData(npm, nama, tempat, tanggal, jurusan, alamat, jenis, foto);
+                    Intent intent = new Intent(Create.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
     }
 
     private void addData(String npm, String nama, String tempat, String tanggal, String jeniskelamin,
-                         String jurusan, String alamat, String image) {
+                         String jurusan, String alamat, String foto) {
          SQLiteDatabase db = dbhelper.getWritableDatabase();
 
          try {
@@ -110,7 +126,7 @@ public class Create extends AppCompatActivity {
                     SQLHelper.row_alamat +
                     ")" +
                     " VALUES('" +
-                    image + "','" +
+                    foto + "','" +
                     npm + "','" +
                     nama + "','" +
                     tempat + "','" +
