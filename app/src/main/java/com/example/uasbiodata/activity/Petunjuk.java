@@ -22,17 +22,6 @@ public class Petunjuk extends AppCompatActivity {
         setKlik();
     }
 
-    void setLayout(){
-        btnkembali = (Button) findViewById(R.id.btn_kembali);
-    }
-
-    void setKlik(){
-        btnkembali.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Petunjuk.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
+    void setLayout(){}
+    void setKlik(){}
 }

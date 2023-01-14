@@ -13,11 +13,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
+import com.example.uasbiodata.Edit;
 import com.example.uasbiodata.R;
 import com.example.uasbiodata.database.SQLHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -35,22 +37,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    //inisialisasi
+        //inisialisasi
         setLayout();
         setKlik();
         dbhelper = new SQLHelper(this);
         getData();
 
 //        pengecekan jika tidak ada data di listview
-        if (cursor.getCount() == 0){
+        if (cursor.getCount() == 0) {
             btnfab.setVisibility(View.GONE);
-        }else{
+        } else {
 //            jika tidak ada , hapus
             btncreate.setVisibility(View.GONE);
         }
-
     }
-//    menu
+//        menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
@@ -63,8 +64,8 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void setMode(int selectedmode){
-        switch (selectedmode){
+    public void setMode(int selectedmode) {
+        switch (selectedmode) {
             case R.id.menu_petunjuk:
                 Intent intent = new Intent(MainActivity.this, Petunjuk.class);
                 startActivity(intent);
@@ -89,13 +90,13 @@ public class MainActivity extends AppCompatActivity {
     }
 //    akhir menu
 
-    void setLayout(){
+    void setLayout() {
         listView = (ListView) findViewById(R.id.lv_data);
         btncreate = (Button) findViewById(R.id.btn_create);
         btnfab = (FloatingActionButton) findViewById(R.id.btn_fab);
     }
 
-    void setKlik(){
+    void setKlik() {
         btncreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,16 +113,16 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void getData(){
+    private void getData() {
         SQLiteDatabase db = dbhelper.getReadableDatabase();
         try {
             cursor = db.rawQuery("SELECT * FROM tabel_biodata", null);
             adapter = new SimpleCursorAdapter(this, R.layout.list_item, cursor,
-                    new String[] {"Nama", "Npm"},
-                    new int[] {R.id.lv_nama,R.id.lv_npm});
+                    new String[]{"Nama", "Npm"},
+                    new int[]{R.id.lv_nama, R.id.lv_npm});
 
             listView.setAdapter(adapter);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

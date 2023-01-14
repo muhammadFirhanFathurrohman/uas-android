@@ -7,9 +7,9 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/li_cli_profil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher_background" />
+        android:layout_width="148dp"
+        android:layout_height="86dp"
+        android:src="@drawable/user" />
 
     <TextView
         android:id="@+id/lv_nama"

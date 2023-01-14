@@ -26,9 +26,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="10dp"
-                android:src="@drawable/hello"
-                app:civ_border_color="@color/purple_700"
-                app:civ_border_width="2dp" />
+                android:src="@drawable/user"/>
 
             <EditText
                 android:id="@+id/et_gambar"
@@ -88,7 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Tanggal"
+                android:text="Tanggal Lahir"
                 android:textStyle="bold"
                 android:textSize="18dp"/>
 
