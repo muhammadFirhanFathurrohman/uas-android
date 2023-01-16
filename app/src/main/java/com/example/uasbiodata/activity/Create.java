@@ -79,13 +79,15 @@ public class Create extends AppCompatActivity {
                 String nama = etnama.getText().toString();
                 String tempat = ettempat.getText().toString();
                 String tanggal = ettanggal.getText().toString();
-                String jurusan = spjurusan.getSelectedItem().toString();
-                String alamat = etalamat.getText().toString();
-//                mengambil id yang terpilih
+                //                mengambil id yang terpilih
                 int idTerpilih = rgJeniskelamin.getCheckedRadioButtonId();
                 rbIdTerpilih = (RadioButton) findViewById(idTerpilih);
-
                 String jenis = rbIdTerpilih.getText().toString();
+
+                String jurusan = spjurusan.getSelectedItem().toString();
+                String alamat = etalamat.getText().toString();
+
+
 
                 if(etnpm.getText().length()==0){
                     Toast.makeText(Create.this, "NPM/NIM harus diisi", Toast.LENGTH_SHORT).show();
@@ -99,7 +101,7 @@ public class Create extends AppCompatActivity {
                     Toast.makeText(Create.this, "Alamat harus diisi", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    addData(npm, nama, tempat, tanggal, jurusan, alamat, jenis, foto);
+                    addData(foto, npm, nama, tempat, tanggal, jenis, alamat, jurusan);
                     Intent intent = new Intent(Create.this, MainActivity.class);
                     Create.this.finish();
                     startActivity(intent);
@@ -108,8 +110,8 @@ public class Create extends AppCompatActivity {
         });
     }
 
-    private void addData(String npm, String nama, String tempat, String tanggal, String jeniskelamin,
-                         String jurusan, String alamat, String foto) {
+    private void addData(String foto, String npm, String nama, String tempat, String tanggal, String jeniskelamin,
+                         String alamat, String jurusan) {
          SQLiteDatabase db = dbhelper.getWritableDatabase();
          try {
             db.execSQL("INSERT INTO " + SQLHelper.TABLE + "(" +
@@ -119,8 +121,8 @@ public class Create extends AppCompatActivity {
                     SQLHelper.row_tempatLahir + "," +
                     SQLHelper.row_tglLahir + "," +
                     SQLHelper.row_jk + "," +
-                    SQLHelper.row_jurusan + "," +
-                    SQLHelper.row_alamat +
+                    SQLHelper.row_alamat + "," +
+                    SQLHelper.row_jurusan +
                     ")" +
                     " VALUES('" +
                     foto + "','" +
@@ -129,8 +131,8 @@ public class Create extends AppCompatActivity {
                     tempat + "','" +
                     tanggal + "','" +
                     jeniskelamin + "','" +
-                    jurusan + "','" +
-                    alamat + "');"
+                    alamat + "','" +
+                    jurusan + "');"
             );
             etnpm.setText("");
             etnama.setText("");

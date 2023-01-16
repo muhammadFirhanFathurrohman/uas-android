@@ -13,14 +13,14 @@ public class SQLHelper extends SQLiteOpenHelper {
 
     public static final String TABLE = "tabel_biodata";
 
+    public static final String row_foto = "Foto";
     public static final String row_npm = "Npm";
     public static final String row_nama = "Nama";
-    public static final String row_jk = "Jk";
     public static final String row_tempatLahir = "TempatLahir";
     public static final String row_tglLahir = "Tanggal";
-    public static final String row_jurusan = "Jurusan";
+    public static final String row_jk = "Jk";
     public static final String row_alamat = "Alamat";
-    public static final String row_foto = "Foto";
+    public static final String row_jurusan = "Jurusan";
 
     public SQLHelper(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -30,14 +30,14 @@ public class SQLHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String sql = "create table " + TABLE +
                 "(_id" + " INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                row_foto + " TEXT NOT NULL, "+
                 row_npm + " TEXT NOT NULL, "+
                 row_nama + " TEXT NOT NULL, "+
-                row_jk + " TEXT NOT NULL, "+
                 row_tempatLahir + " TEXT NOT NULL, "+
                 row_tglLahir + " TEXT NOT NULL, "+
-                row_jurusan + " TEXT NOT NULL, "+
+                row_jk + " TEXT NOT NULL, "+
                 row_alamat + " TEXT NOT NULL, "+
-                row_foto + " TEXT NOT NULL);";
+                row_jurusan + " TEXT NOT NULL);";
         Log.d("Data", "oncreate: " + sql);
         db.execSQL(sql);
     }

@@ -19,6 +19,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.uasbiodata.Edit;
 import com.example.uasbiodata.R;
@@ -116,6 +117,39 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                int id = cursor.getInt(0);
+                String npm = cursor.getString(2) ;
+                String nama = cursor.getString(3) ;
+                String tempalahir = cursor.getString(4) ;
+
+                 AlertDialog.Builder alerBuilder = new AlertDialog.Builder(MainActivity.this);
+                 alerBuilder.setTitle("Pilih Option : ");
+
+                 String[] options = {"Lihat Data"};
+
+                 alerBuilder.setItems(options,(dialogInterface, j) -> {
+                    switch (j){
+                        case 0:
+                            AlertDialog.Builder lihatdata = new AlertDialog.Builder(MainActivity.this);
+                            lihatdata.setTitle("Lihat Data : ");
+
+                            lihatdata.setMessage(
+                                    "Npm : " + npm +"\n" +
+                                            "Nama : " + nama + "\n" +
+                                            "Tempat lahir : " + tempalahir + "\n"
+                                    );
+
+                            lihatdata.show();
+                            break;
+                    }
+                 });
+                 alerBuilder.show();
+            }
+        });
     }
 
     private void getData() {
@@ -124,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
             cursor = db.rawQuery("SELECT * FROM tabel_biodata", null);
             adapter = new SimpleCursorAdapter(this, R.layout.list_item, cursor,
                     new String[]{"Nama", "Npm"},
-                    new int[]{R.id.lv_nama, R.id.lv_npm});
+                    new int[]{ R.id.lv_nama, R.id.lv_npm});
 
             listView.setAdapter(adapter);
         } catch (Exception e) {
