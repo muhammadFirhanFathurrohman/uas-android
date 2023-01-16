@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 
 import com.example.uasbiodata.Edit;
 import com.example.uasbiodata.R;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     SQLHelper dbhelper;
     Button btncreate;
     FloatingActionButton btnfab;
+    TextView tvdata;
     protected ListView listView;
     protected Cursor cursor;
     protected ListAdapter adapter;
@@ -46,9 +48,11 @@ public class MainActivity extends AppCompatActivity {
 //        pengecekan jika tidak ada data di listview
         if (cursor.getCount() == 0) {
             btnfab.setVisibility(View.GONE);
+            tvdata.setText("Data masih kosong");
         } else {
 //            jika tidak ada , hapus
             btncreate.setVisibility(View.GONE);
+            tvdata.setText("Data Mahasiswa ");
         }
     }
 //        menu
@@ -70,22 +74,22 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, Petunjuk.class);
                 startActivity(intent);
                 break;
-            case R.id.menu_keluar:
-                final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage("Keluar dari aplikasi ? ").setCancelable(false).
-                        setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-//                                kalau ya
-                                MainActivity.this.finish();
-                            }
-                        }).setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-//                                kalau tidak
-                                dialogInterface.cancel();
-                            }
-                        }).show();
+//            case R.id.menu_keluar:
+//                final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//                builder.setMessage("Keluar dari aplikasi ? ").setCancelable(false).
+//                        setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialogInterface, int i) {
+//
+//                                MainActivity.this.finish();
+//                            }
+//                        }).setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialogInterface, int i) {
+//
+//                                dialogInterface.cancel();
+//                            }
+//                        }).show();
         }
     }
 //    akhir menu
@@ -94,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.lv_data);
         btncreate = (Button) findViewById(R.id.btn_create);
         btnfab = (FloatingActionButton) findViewById(R.id.btn_fab);
+        tvdata = (TextView) findViewById(R.id.tv_data);
     }
 
     void setKlik() {

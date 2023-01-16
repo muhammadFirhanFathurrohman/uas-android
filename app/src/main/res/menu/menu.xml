@@ -5,9 +5,4 @@
     android:id="@+id/menu_petunjuk"
     android:title="petunjuk"
     app:showAsAction="never"/>
-
-    <item
-    android:id="@+id/menu_keluar"
-    android:title="keluar"
-    app:showAsAction="never"/>
 </menu>

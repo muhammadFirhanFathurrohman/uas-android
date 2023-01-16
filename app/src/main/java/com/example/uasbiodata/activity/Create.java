@@ -31,7 +31,7 @@ public class Create extends AppCompatActivity {
     EditText  etnpm, etnama, ettempat, ettanggal, etalamat;
     RadioGroup rgJeniskelamin;
     RadioButton rbIdTerpilih;
-    Button btnsimpan, btnkembali;
+    Button btnsimpan;
     Spinner spjurusan;
     CircleImageView cliprofil;
     DatePickerDialog datePickerDialog;
@@ -61,11 +61,9 @@ public class Create extends AppCompatActivity {
         spjurusan = (Spinner) findViewById(R.id.sp_jurusan);
         cliprofil = (CircleImageView) findViewById(R.id.cli_profil);
         btnsimpan = (Button) findViewById(R.id.btn_simpan);
-        btnkembali = (Button) findViewById(R.id.btn_kembali);
     }
 
     void setKlik(){
-
         ettanggal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,8 +101,8 @@ public class Create extends AppCompatActivity {
                 else {
                     addData(npm, nama, tempat, tanggal, jurusan, alamat, jenis, foto);
                     Intent intent = new Intent(Create.this, MainActivity.class);
+                    Create.this.finish();
                     startActivity(intent);
-                    finish();
                 }
             }
         });
@@ -113,7 +111,6 @@ public class Create extends AppCompatActivity {
     private void addData(String npm, String nama, String tempat, String tanggal, String jeniskelamin,
                          String jurusan, String alamat, String foto) {
          SQLiteDatabase db = dbhelper.getWritableDatabase();
-
          try {
             db.execSQL("INSERT INTO " + SQLHelper.TABLE + "(" +
                     SQLHelper.row_foto + "," +
