@@ -1,5 +1,6 @@
 package com.example.uasbiodata.activity;
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
             tvdata.setText("Data Mahasiswa ");
         }
     }
+
 //        menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -81,13 +84,11 @@ public class MainActivity extends AppCompatActivity {
 //                        setPositiveButton("Ya", new DialogInterface.OnClickListener() {
 //                            @Override
 //                            public void onClick(DialogInterface dialogInterface, int i) {
-//
 //                                MainActivity.this.finish();
 //                            }
 //                        }).setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
 //                            @Override
 //                            public void onClick(DialogInterface dialogInterface, int i) {
-//
 //                                dialogInterface.cancel();
 //                            }
 //                        }).show();
@@ -103,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void setKlik() {
+//        tombol tambah diklik
         btncreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -110,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+//        tombol fab diklik
         btnfab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -117,33 +120,83 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+//        klik isi data listview
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                mengambil data dari database
                 int id = cursor.getInt(0);
                 String npm = cursor.getString(2) ;
                 String nama = cursor.getString(3) ;
                 String tempalahir = cursor.getString(4) ;
+                String tanggallahir = cursor.getString(5) ;
+                String jeniskelamin = cursor.getString(6) ;
+                String alamat = cursor.getString(7) ;
+                String jurusan = cursor.getString(8) ;
 
+// membuat alert
                  AlertDialog.Builder alerBuilder = new AlertDialog.Builder(MainActivity.this);
-                 alerBuilder.setTitle("Pilih Option : ");
-
-                 String[] options = {"Lihat Data"};
-
+                 alerBuilder.setTitle("Pilih Opsi : ");
+//                 pilihan alert
+                 String[] options = {"Lihat Data", "Edit Data", "Hapus Data"};
                  alerBuilder.setItems(options,(dialogInterface, j) -> {
                     switch (j){
+//                       lihat data diklik
                         case 0:
                             AlertDialog.Builder lihatdata = new AlertDialog.Builder(MainActivity.this);
                             lihatdata.setTitle("Lihat Data : ");
-
                             lihatdata.setMessage(
-                                    "Npm : " + npm +"\n" +
-                                            "Nama : " + nama + "\n" +
-                                            "Tempat lahir : " + tempalahir + "\n"
+                                    "Npm : " + "\t" + npm +"\n" + "\n" +
+                                            "Nama : " + "\t" + nama + "\n" + "\n" +
+                                            "Tempat Lahir : " + "\t" + tempalahir + "\n" + "\n" +
+                                            "Tanggal Lahir : " + "\t" + tanggallahir + "\n" + "\n" +
+                                            "Jenis Kelamin : " + "\t" + jeniskelamin + "\n" + "\n" +
+                                            "Alamat : " + "\t" + alamat + "\n" + "\n" +
+                                            "Jurusan : " + "\t" + jurusan
                                     );
-
                             lihatdata.show();
+                            break;
+//                             edit data diklik
+                        case 1:
+                                    Intent editdata = new Intent(MainActivity.this, Edit.class);
+                                    editdata.putExtra("ID_" , id);
+                                    editdata.putExtra("NPM_" , npm);
+                                    editdata.putExtra("NAMA_", nama);
+                                    editdata.putExtra("TEMPAT_", tempalahir);
+                                    editdata.putExtra("TANGGAL_", tanggallahir);
+                                    editdata.putExtra("JENIS_", jeniskelamin);
+                                    editdata.putExtra("ALAMAT_", alamat);
+                                    editdata.putExtra("JURUSAN_", jurusan);
+                                    startActivity(editdata);
+                            break;
+//                             hapus data diklik
+                        case 2:
+                            AlertDialog.Builder alerthapus = new AlertDialog.Builder(MainActivity.this);
+                            alerthapus.setMessage("Apakah ingin menghapus data ini ?").setCancelable(false).
+                                    setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            SQLiteDatabase db = dbhelper.getWritableDatabase();
+                                            try {
+                                                    db.execSQL("DELETE FROM " + SQLHelper.TABLE + " where _id='"
+                                                    + id +"'");
+                                                    Toast.makeText(MainActivity.this,
+                                                            "berhasil dihapus",
+                                                        Toast.LENGTH_SHORT).show();
+                                                    getData();
+                                            }catch (Exception e){
+                                                e.printStackTrace();
+                                                Toast.makeText(MainActivity.this,
+                                                        "gagal dihapus",
+                                                        Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    }).setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            dialogInterface.cancel();
+                                        }
+                                    }).show();
                             break;
                     }
                  });
@@ -151,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
+//    mengambil data supaya nampil di lisview
     private void getData() {
         SQLiteDatabase db = dbhelper.getReadableDatabase();
         try {

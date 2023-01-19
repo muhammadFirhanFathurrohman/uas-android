@@ -180,17 +180,7 @@
                     android:textColor="#ffffff"
                     android:textSize="18dp"
                     android:textStyle="bold" />
-
-                <!--                <androidx.appcompat.widget.AppCompatButton-->
-                <!--                    android:id="@+id/btn_kembali"-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:background="@drawable/bg_button"-->
-                <!--                    android:onClick="kembali"-->
-                <!--                    android:text="KEMBALI"-->
-                <!--                    android:textColor="#ffffff" />-->
             </androidx.appcompat.widget.LinearLayoutCompat>
-
 
         </LinearLayout>
 

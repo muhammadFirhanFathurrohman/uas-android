@@ -56,7 +56,7 @@ public class Create extends AppCompatActivity {
         ettempat = (EditText) findViewById(R.id.et_tempat);
         etalamat = (EditText) findViewById(R.id.et_alamat);
 
-         rgJeniskelamin = (RadioGroup) findViewById(R.id.rg_jenis);
+        rgJeniskelamin = (RadioGroup) findViewById(R.id.rg_jenis);
 
         spjurusan = (Spinner) findViewById(R.id.sp_jurusan);
         cliprofil = (CircleImageView) findViewById(R.id.cli_profil);
@@ -84,10 +84,8 @@ public class Create extends AppCompatActivity {
                 rbIdTerpilih = (RadioButton) findViewById(idTerpilih);
                 String jenis = rbIdTerpilih.getText().toString();
 
-                String jurusan = spjurusan.getSelectedItem().toString();
                 String alamat = etalamat.getText().toString();
-
-
+                String jurusan = spjurusan.getSelectedItem().toString();
 
                 if(etnpm.getText().length()==0){
                     Toast.makeText(Create.this, "NPM/NIM harus diisi", Toast.LENGTH_SHORT).show();
