@@ -2,6 +2,7 @@ package com.example.uasbiodata.activity;
 
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-//        menu
+    //        menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
@@ -78,20 +79,20 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, Petunjuk.class);
                 startActivity(intent);
                 break;
-//            case R.id.menu_keluar:
-//                final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//                builder.setMessage("Keluar dari aplikasi ? ").setCancelable(false).
-//                        setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialogInterface, int i) {
-//                                MainActivity.this.finish();
-//                            }
-//                        }).setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialogInterface, int i) {
-//                                dialogInterface.cancel();
-//                            }
-//                        }).show();
+            case R.id.menu_keluar:
+                final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("Keluar dari aplikasi ? ").setCancelable(false).
+                        setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                MainActivity.this.finish();
+                            }
+                        }).setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        }).show();
         }
     }
 //    akhir menu
@@ -109,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, Create.class);
-                startActivity(intent);
+                startActivityForResult(intent, 202);
             }
         });
 //        tombol fab diklik
@@ -117,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, Create.class);
-                startActivity(intent);
+                startActivityForResult(intent, 202);
             }
         });
 //        klik isi data listview
@@ -126,48 +127,48 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 //                mengambil data dari database
                 int id = cursor.getInt(0);
-                String npm = cursor.getString(2) ;
-                String nama = cursor.getString(3) ;
-                String tempalahir = cursor.getString(4) ;
-                String tanggallahir = cursor.getString(5) ;
-                String jeniskelamin = cursor.getString(6) ;
-                String alamat = cursor.getString(7) ;
-                String jurusan = cursor.getString(8) ;
+                String npm = cursor.getString(2);
+                String nama = cursor.getString(3);
+                String tempalahir = cursor.getString(4);
+                String tanggallahir = cursor.getString(5);
+                String jeniskelamin = cursor.getString(6);
+                String alamat = cursor.getString(7);
+                String jurusan = cursor.getString(8);
 
 // membuat alert
-                 AlertDialog.Builder alerBuilder = new AlertDialog.Builder(MainActivity.this);
-                 alerBuilder.setTitle("Pilih Opsi : ");
+                AlertDialog.Builder alerBuilder = new AlertDialog.Builder(MainActivity.this);
+                alerBuilder.setTitle("Pilih Opsi : ");
 //                 pilihan alert
-                 String[] options = {"Lihat Data", "Edit Data", "Hapus Data"};
-                 alerBuilder.setItems(options,(dialogInterface, j) -> {
-                    switch (j){
+                String[] options = {"Lihat Data", "Edit Data", "Hapus Data"};
+                alerBuilder.setItems(options, (dialogInterface, j) -> {
+                    switch (j) {
 //                       lihat data diklik
                         case 0:
                             AlertDialog.Builder lihatdata = new AlertDialog.Builder(MainActivity.this);
                             lihatdata.setTitle("Lihat Data : ");
                             lihatdata.setMessage(
-                                    "Npm : " + "\t" + npm +"\n" + "\n" +
+                                    "Npm : " + "\t" + npm + "\n" + "\n" +
                                             "Nama : " + "\t" + nama + "\n" + "\n" +
                                             "Tempat Lahir : " + "\t" + tempalahir + "\n" + "\n" +
                                             "Tanggal Lahir : " + "\t" + tanggallahir + "\n" + "\n" +
                                             "Jenis Kelamin : " + "\t" + jeniskelamin + "\n" + "\n" +
                                             "Alamat : " + "\t" + alamat + "\n" + "\n" +
                                             "Jurusan : " + "\t" + jurusan
-                                    );
+                            );
                             lihatdata.show();
                             break;
 //                             edit data diklik
                         case 1:
-                                    Intent editdata = new Intent(MainActivity.this, Edit.class);
-                                    editdata.putExtra("ID_" , id);
-                                    editdata.putExtra("NPM_" , npm);
-                                    editdata.putExtra("NAMA_", nama);
-                                    editdata.putExtra("TEMPAT_", tempalahir);
-                                    editdata.putExtra("TANGGAL_", tanggallahir);
-                                    editdata.putExtra("JENIS_", jeniskelamin);
-                                    editdata.putExtra("ALAMAT_", alamat);
-                                    editdata.putExtra("JURUSAN_", jurusan);
-                                    startActivity(editdata);
+                            Intent editdata = new Intent(MainActivity.this, Edit.class);
+                            editdata.putExtra(Edit.ID_, id);
+                            editdata.putExtra(Edit.NPM_, npm);
+                            editdata.putExtra(Edit.NAMA_, nama);
+                            editdata.putExtra(Edit.TEMPAT_, tempalahir);
+                            editdata.putExtra(Edit.TANGGAL_, tanggallahir);
+                            editdata.putExtra(Edit.JENIS_, jeniskelamin);
+                            editdata.putExtra(Edit.ALAMAT_, alamat);
+                            editdata.putExtra(Edit.JURUSAN_, jurusan);
+                            startActivityForResult(editdata, 201);
                             break;
 //                             hapus data diklik
                         case 2:
@@ -178,13 +179,13 @@ public class MainActivity extends AppCompatActivity {
                                         public void onClick(DialogInterface dialogInterface, int i) {
                                             SQLiteDatabase db = dbhelper.getWritableDatabase();
                                             try {
-                                                    db.execSQL("DELETE FROM " + SQLHelper.TABLE + " where _id='"
-                                                    + id +"'");
-                                                    Toast.makeText(MainActivity.this,
-                                                            "berhasil dihapus",
+                                                db.execSQL("DELETE FROM " + SQLHelper.TABLE + " where _id='"
+                                                        + id + "'");
+                                                Toast.makeText(MainActivity.this,
+                                                        "berhasil dihapus",
                                                         Toast.LENGTH_SHORT).show();
-                                                    getData();
-                                            }catch (Exception e){
+                                                getData();
+                                            } catch (Exception e) {
                                                 e.printStackTrace();
                                                 Toast.makeText(MainActivity.this,
                                                         "gagal dihapus",
@@ -199,23 +200,32 @@ public class MainActivity extends AppCompatActivity {
                                     }).show();
                             break;
                     }
-                 });
-                 alerBuilder.show();
+                });
+                alerBuilder.show();
             }
         });
     }
-//    mengambil data supaya nampil di lisview
+
+    //    mengambil data supaya nampil di lisview
     private void getData() {
         SQLiteDatabase db = dbhelper.getReadableDatabase();
         try {
             cursor = db.rawQuery("SELECT * FROM tabel_biodata", null);
             adapter = new SimpleCursorAdapter(this, R.layout.list_item, cursor,
                     new String[]{"Nama", "Npm"},
-                    new int[]{ R.id.lv_nama, R.id.lv_npm});
+                    new int[]{R.id.lv_nama, R.id.lv_npm});
 
             listView.setAdapter(adapter);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            getData();
         }
     }
 }

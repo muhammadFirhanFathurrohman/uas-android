@@ -12,8 +12,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -28,6 +31,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Create extends AppCompatActivity {
 
     SQLHelper dbhelper;
+    protected ListView listView;
+    protected Cursor cursor;
+    protected ListAdapter adapter;
     EditText  etnpm, etnama, ettempat, ettanggal, etalamat;
     RadioGroup rgJeniskelamin;
     RadioButton rbIdTerpilih;
@@ -100,9 +106,6 @@ public class Create extends AppCompatActivity {
                 }
                 else {
                     addData(foto, npm, nama, tempat, tanggal, jenis, alamat, jurusan);
-                    Intent intent = new Intent(Create.this, MainActivity.class);
-                    Create.this.finish();
-                    startActivity(intent);
                 }
             }
         });
@@ -137,6 +140,8 @@ public class Create extends AppCompatActivity {
             ettempat.setText("");
             ettanggal.setText("");
             etalamat.setText("");
+            this.setResult(RESULT_OK);
+            finish();
         } catch (Exception e) {
             e.printStackTrace();
         }
