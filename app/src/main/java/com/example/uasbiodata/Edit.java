@@ -30,8 +30,8 @@ public class Edit extends AppCompatActivity {
     EditText etnpmedit, etnamaedit, ettempatedit, ettanggaledit, etalamatedit;
     Button btnedit;
     Spinner spjurusanedit;
-    RadioGroup rgedit;
-    RadioButton rblaki, rbperempuan;
+    RadioGroup rgjeniskelaminedit;
+    RadioButton rblaki, rbperempuan, rbidpilihanedit;
     CircleImageView cliprofiledit;
     DatePickerDialog datePickerDialog;
     SimpleDateFormat dateFormat;
@@ -66,7 +66,7 @@ public class Edit extends AppCompatActivity {
         ettanggaledit = (EditText) findViewById(R.id.et_tanggal_edit);
         etalamatedit = (EditText) findViewById(R.id.et_alamat_edit);
 
-        rgedit = (RadioGroup) findViewById(R.id.rg_jenis_edit);
+        rgjeniskelaminedit = (RadioGroup) findViewById(R.id.rg_jenis_edit);
         rblaki = (RadioButton) findViewById(R.id.rb_laki_edit);
         rbperempuan = (RadioButton) findViewById(R.id.rb_perempuan_edit);
         spjurusanedit = (Spinner) findViewById(R.id.sp_jurusan_edit);
@@ -119,7 +119,6 @@ public class Edit extends AppCompatActivity {
     }
 
     void setKlik() {
-
         ettanggaledit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -142,6 +141,7 @@ public class Edit extends AppCompatActivity {
                 }
                 else {
                     editData();
+                    Toast.makeText(getBaseContext(), "Data berhasil diedit", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -149,6 +149,8 @@ public class Edit extends AppCompatActivity {
 
     private void editData() {
         SQLiteDatabase db = dbhelper.getWritableDatabase();
+        int idTerpilihEdit = rgjeniskelaminedit.getCheckedRadioButtonId();
+        rbidpilihanedit = (RadioButton) findViewById(idTerpilihEdit);
         try {
             db.execSQL("UPDATE tabel_biodata SET " +
                     "Foto='" + "" +
@@ -156,7 +158,7 @@ public class Edit extends AppCompatActivity {
                     "',Nama='" + etnamaedit.getText().toString() +
                     "',TempatLahir='" + ettempatedit.getText().toString() +
                     "',Tanggal='" + ettanggaledit.getText().toString() +
-                    "',Jk='" + rbperempuan.getText().toString() +
+                    "',Jk='" + rbidpilihanedit.getText().toString() +
                     "',Alamat='" + etalamatedit.getText().toString() +
                     "',Jurusan='" + spjurusanedit.getSelectedItem().toString() +
                     "' WHERE _id=" + id

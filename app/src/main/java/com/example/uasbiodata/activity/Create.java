@@ -106,6 +106,7 @@ public class Create extends AppCompatActivity {
                 }
                 else {
                     addData(foto, npm, nama, tempat, tanggal, jenis, alamat, jurusan);
+                    Toast.makeText(getBaseContext(), "Data berhasil disimpan", Toast.LENGTH_SHORT).show();
                 }
             }
         });
