@@ -5,14 +5,79 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+    android:padding="15dp"
     tools:context=".activity.Petunjuk">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Petunjuk"
+        android:layout_gravity="center"
         android:textSize="30dp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1.Klik button tambah"
+            android:textSize="18dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2.Isi form biodata mahasiswa"
+            android:textSize="18dp"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3.Setelah selesai diisi maka Klik Simpan"
+            android:textSize="18dp"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4.Jika ingin melihat data maka Klik data tersebut nanti akan muncul alert dialog Lihat"
+            android:textSize="18dp"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5.Jika ingin mengedit data maka Klik data tersebut nanti akan muncul alert dialog Edit"
+            android:textSize="18dp"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6.Jika ingin menghapus data maka Klik data tersebut nanti akan muncul alert dialog Hapus"
+            android:textSize="18dp"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7.Jika ingin melihat petunjuk aplikasi maka klik titik tiga di atas"
+            android:textSize="18dp"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="8.Jika ingin keluar aplikasi maka klik titik tiga di atas "
+            android:textSize="18dp"
+            android:layout_marginTop="8dp"/>
+
+    </LinearLayout>
 
 </LinearLayout>
