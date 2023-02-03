@@ -1,9 +1,8 @@
-package com.example.uasbiodata;
+package com.example.uasbiodata.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -13,10 +12,9 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.uasbiodata.activity.Create;
+import com.example.uasbiodata.R;
 import com.example.uasbiodata.database.SQLHelper;
 
 import java.text.SimpleDateFormat;
